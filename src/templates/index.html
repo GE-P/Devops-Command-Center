@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block nav_a %}
+{% endblock %}
+
+{% block content %}
+
+<div  style="width: 50%; margin: auto">
+    <hr style="margin-top: 150px">
+    <h2 align="center"><p style="color: #264e70">Welcome to Devops Command Center</p></h2>
+    <hr>
+    <center>
+        <div style="margin-top: 50px" id="load"> Loading Data</div>
+        <div style="margin-top: 10px" id="loader"></div>
+
+        <div style="display:none;" id="myDiv" class="animate-bottom">
+<!--            <h3> Ready </h3>-->
+            <p> Data loaded successfully </p>
+
+
+        </div>
+    </center>
+
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 5000);
+        }
+
+        function showPage() {
+
+            document.getElementById("load").style.display = "none";
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+            window.location.href = "projects";
+        }
+
+    </script>
+
+
+</div>
+{% endblock %}

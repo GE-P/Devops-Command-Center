@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div style="width: 50%; margin: auto">
+    <h2 align="center"><p style="color: #264e70">Executions statistics</p></h2>
+    <hr>
+
+    <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Projects
+            <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+            {% for content in contents %}
+            <li><a onclick="click_chart()">{{ content }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <center>
+        <div style="height: 50vh; width: 100%;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <script>
+        function click_chart() {
+        const labels = {{ labels | tojson}};
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'usage',
+                backgroundColor: 'rgb(100, 150, 200)',
+                borderColor: 'rgb(100, 150, 200)',
+                data: {{ data | tojson}},
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: { maintainAspectRatio: false }
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );}
+        </script>
+    </center>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>{% block title %} {% endblock %} - Gitlab metrics analyser</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        nav_a {
+            color: #264e70;
+            font-size: 1em;
+            margin-left: 50px;
+            text-decoration: none;
+        }
+
+        table {
+          color: #264e70;
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+
+        #loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #load_bar {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            animation: spin 2s linear infinite;
+        }
+
+    </style>
+
+    <script>
+            function clickme() {alert("hello")}
+
+    </script>
+
+</head>
+<body onload="myFunction()">
+
+<nav class="navbar navbar-inverse">
+    {% if session.loggedin %}
+        {% if isIndex %}
+        {% else %}
+
+
+    <ul style="margin-left: 30px" class="nav navbar-nav">
+
+        <li class="nav-item">
+            <a href="{{ url_for('projects') }}">Projects</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('stats') }}">Statistics</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('cicd') }}">Scripts</a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ url_for('convention') }}">Convention</a>
+        </li>
+    </ul>
+
+        {% endif %}
+
+
+    <div style="margin-right: 50px" class="container pull-right">
+        <a class="btn navbar-btn btn-danger navbar-right " href="{{ url_for('auth.logout') }}">logout</a>
+    </div>
+
+    {% else %}
+
+    <div class="container pull-right">
+        <a class="btn navbar-btn btn-success navbar-right " href="{{ url_for('auth.login') }}">login</a>
+    </div>
+
+    {% endif %}
+
+</nav>
+<hr>
+<div class="content">
+    {% for message in get_flashed_messages() %}
+    <div style="width: 50%; margin: auto" class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    {% block content %} {% endblock %}
+
+</div>
+
+
+</body>
+
+</html>

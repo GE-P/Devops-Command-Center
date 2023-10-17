@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div style="width: 50%; margin: auto">
+    <h2 align="center" ><p style="color: #264e70">Gitlab projects</p></h2>
+    <hr>
+    <table>
+        <tr>
+            <th>Project name</th>
+            <th style="width: 60px">CI-CD</th>
+            <th>Action</th>
+            <th>Last execution</th>
+            <th>Status</th>
+            <th>Time elapsed</th>
+            <th>Metrics</th>
+            <th>Url</th>
+        </tr>
+        {% for content in contents %}
+        <tr>
+            <td>{{ content }}</td>
+            <td>&#{{ contents[content]['CI-CD'] }}</td>
+            {% if contents[content]['CI-CD'] == "9989": %}
+            <td><a href="#">
+                <button class=grey style="height:30px;width:60px;float:right">Remove</button>
+            </a></td>
+            <td>{{ contents[content]['date'] }}</td>
+            {% if contents[content]['status'] == "Failed": %}
+            <td>Failed</td>
+            {% elif contents[content]['status'] == "Success": %}
+            <td>Success</td>
+            {% else %}
+            <td>N/A</td>
+            {% endif %}
+            <td>{{ contents[content]['time'] }} sec</td>
+            <td><a href="{{ url_for('metrics_project', project=content) }}">
+                <button class=grey style="height:30px;width:60px;float:right">Metric</button>
+            </a></td>
+            {% else %}
+            <td><a href="#">
+                <button class=grey style="height:30px;width:60px;float:right">Add</button>
+            </a></td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            {% endif %}
+            <!--            <td>{{ content['date'] }}</td>-->
+            <!--            <td>{{ content['time'] }} sec</td>-->
+            <td><a href="{{ contents[content]['url'] }}">
+                <button class=grey style="height:30px;width:60px;float:right">URL</button>
+            </a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <hr>
+    <!--    {% for content in contents %}-->
+    <!--    &lt;!&ndash;        <div style="padding: 10px height:100px; background-color: #EEE; margin: 20px">&ndash;&gt;-->
+    <!--    <div style="height:40px; background-color: #EEE; margin: 20px">-->
+    <!--        <p style="font-size: 16px">{{ content['project_name'] }} <a><span style="border: 1px solid black">&#{{ content['CI-CD'] }}</span></a><a-->
+    <!--                href="{{ content['url'] }}">-->
+    <!--            <button class=grey style="height:30px;width:60px;float:right">URL</button>-->
+    <!--        </a></p>-->
+    <!--    </div>-->
+    <!--    {% endfor %}-->
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div style="width: 50%; margin: auto">
+    <h1><p style="color: #264e70">Metrics</p></h1>
+    <hr>
+    <table>
+        <tr>
+            <th>Project name</th>
+            <th>CI-CD</th>
+            <th>Action</th>
+            <th>Last execution</th>
+            <th>Time elapsed</th>
+            <th>Metrics</th>
+            <th>Url</th>
+        </tr>
+        {% for content in contents %}
+        <tr>
+            <td>{{ content }}</td>
+            <td>&#{{ contents[content]['CI-CD'] }}</td>
+            {% if contents[content]['CI-CD'] == "9989": %}
+            <td><a href="#">
+                <button class=grey style="height:30px;width:60px;float:right">Remove</button>
+            </a></td>
+            <td>{{ contents[content]['date'] }}</td>
+            <td>{{ contents[content]['time'] }} sec</td>
+            <td><a href="{{ url_for('metrics_project', project=content['project_name']) }}">
+                <button class=grey style="height:30px;width:60px;float:right">Metric</button>
+            </a></td>
+            {% else %}
+            <td><a href="#">
+                <button class=grey style="height:30px;width:60px;float:right">Add</button>
+            </a></td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            {% endif %}
+            <!--            <td>{{ content['date'] }}</td>-->
+            <!--            <td>{{ content['time'] }} sec</td>-->
+            <td><a href="{{ content['url'] }}">
+                <button class=grey style="height:30px;width:60px;float:right">URL</button>
+            </a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

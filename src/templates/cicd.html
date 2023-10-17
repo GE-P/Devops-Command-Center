@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div style="width: 50%; margin: auto">
+    <h2 align="center"><p style="color: #264e70">CI-CD's vault templates</p></h2>
+    <hr>
+    <div>
+        {% for file in files %}
+        <p>&#128195 {{ file }}<a href="">
+            <button class=grey style="height:25px;width:85px;float:right">Open file</button>
+        </a></p>
+
+        <!--      <img src="{{ url_for('cicd', filename=file) }}" style="width: 64px">-->
+        {% endfor %}
+    </div>
+    <hr>
+    <div>
+        <h5>Store more gitlab yaml scripts, just choose a file and upload it :</h5>
+        <form method=post enctype=multipart/form-data>
+            <div style="float:left">
+                <input type=file name=file>
+            </div>
+            <div style="float:left; padding: 0px">
+                <input type=submit value=Upload>
+            </div>
+        </form>
+    </div>
+
+</div>
+{% endblock %}
+
+

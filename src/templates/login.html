@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="width: 25%; margin-top: 150px" class="container ">
+    <div class="">
+        <div class="">
+            <hr>
+            <h5 align="center">Please enter your username and password</h5>
+            <hr>
+            <form action="{{ url_for('auth.login') }}" method="post">
+                <div class="form-group">
+                    <label class="cols-sm-2 control-label">Username</label>
+                    <div class="cols-sm-10">
+                        <div class="">
+                            <span class=""><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="username" placeholder="Username" id="username"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="cols-sm-2 control-label">Password</label>
+                    <div class="cols-sm-10">
+                        <div class="">
+                            <span class=""><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="password" placeholder="Password"
+                                   id="password"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="cols-sm-10">
+                        <div class="">
+                            <span class=""><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <!--                            <input type="checkbox" value="checked"><b> Remember username</b>-->
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <input type="submit" value="Login" class="form-control btn btn-success " name="">
+
+            </form>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <!--            <p style="padding:5px;">No account, please <a href="{{ url_for('auth.register') }}">Register</a></p>-->
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div style="width: 25%; margin: auto">
+    <hr style="margin-top: 150px">
+    <h2 align="center"><p style="color: #264e70">Convention verifyer</p></h2>
+    <hr>
+    <center>
+        <div style="margin-top: 10px"> See console window</div>
+        <div style="margin-top: 10px"> Proper page UI coming soon</div>
+        <hr>
+        <form action="/verify/" method="post">
+            <button name="verifyer" onclick="show()" type="submit">Verify</button>
+        </form>
+
+        <hr>
+
+        <div style="margin-top: 10px; display:none" id="load_bar"></div>
+
+    </center>
+
+    <script>
+
+function show() {
+  document.getElementById("load_bar").style.display = "block";
+}
+
+
+    </script>
+</div>
+{% endblock %}

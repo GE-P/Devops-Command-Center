@@ -1,0 +1,30 @@
+{
+  "project 1": {
+    "url": "https://gitlab.my.domain/group/group2/project_1",
+    "CI-CD": "9989",
+    "time": "471.32533500000005",
+    "date": "2023-05-11",
+    "status": "Success"
+  },
+  "project 2": {
+    "url": "https://gitlab.my.domain/group/group2/project_3",
+    "CI-CD": "9989",
+    "time": "352.678921",
+    "date": "2023-06-20",
+    "status": "Failure"
+  },
+  "project 3": {
+    "url": "https://gitlab.my.domain/group/group2/project_2",
+    "CI-CD": "10060",
+    "time": "",
+    "date": "",
+    "status": ""
+  },
+  "project 4": {
+    "url": "https://gitlab.my.domain/group/group2/project_4",
+    "CI-CD": "10060",
+    "time": "",
+    "date": "",
+    "status": ""
+  }
+}
